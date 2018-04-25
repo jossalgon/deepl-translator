@@ -60,7 +60,7 @@ function translate(text, targetLanguage, sourceLanguage = 'auto') {
               : getTranslation(
                   paragraph,
                   targetLanguage,
-                  resolvedSourceLanguage || 'auto'
+                  sourceLanguage || resolvedSourceLanguage || 'auto'
                 ).then(transformTranslationResponse)
         )
       ).then(translatedParagraphs => ({
