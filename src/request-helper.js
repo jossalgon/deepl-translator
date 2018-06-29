@@ -7,7 +7,14 @@ module.exports = (options, postBody) => {
 
       res.setEncoding('utf8');
       res.on('data', chunk => (data += chunk));
-      res.on('end', () => resolve(JSON.parse(data.trim())));
+      res.on('end', () => {
+        try {
+          const dataParsed = JSON.parse(data.trim());
+          resolve(dataParsed);
+        } catch (err) {
+          reject(err);
+        }
+      });
     });
 
     req.on('error', reject);
